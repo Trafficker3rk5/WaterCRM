@@ -1,0 +1,737 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
+
+
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.react-select_menu {
+  z-index: 9999 !important;
+  background-color: #fff !important;
+}
+
+/* HEADER / SIDEBAR */
+
+.page-header,
+.footer,
+.bg-gradient {
+  background: #0288d1;
+  background: -webkit-linear-gradient(45deg, #0288d1, #26c6da) !important;
+  background: linear-gradient(45deg, #0288d1, #26c6da) !important;
+  color: #fff !important;
+}
+
+/* Inputs */
+.form-floating {
+  ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+  }
+
+  :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+  }
+
+  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+  }
+
+  .form-control {
+    border: none !important;
+    border-bottom: 1px solid #9e9e9e !important;
+    border-radius: 0px !important;
+  }
+
+  .form-control:focus:not([readonly]) {
+    border-bottom: 1px solid var(--theme-deafult);
+    box-shadow: 0 1px 0 0 var(--theme-deafult);
+  }
+
+  .form-control,
+  label {
+    padding-left: 0px !important;
+  }
+
+  >.form-control:focus {
+    ~label {
+      color: var(--theme-deafult);
+    }
+  }
+
+  >.form-control:focus~label,
+  >.form-control:not(:placeholder-shown)~label,
+  >.form-control-plaintext~label,
+  >.form-select~label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0rem);
+  }
+
+  textarea.form-control {
+    height: 100px !important;
+    resize: none;
+  }
+
+  .react-select__control {
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0px;
+    box-shadow: none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    min-height: 40px;
+  }
+
+  .input-disabled {
+    border: none !important;
+    cursor: default;
+  }
+}
+
+.select-floating {
+  label {
+    color: var(--theme-deafult);
+    transform: scale(0.85) translateY(-2rem) translateX(0rem);
+  }
+
+  .react-select__value-container {
+    padding: 2px 8px 2px 0px;
+  }
+
+  .react-select__multi-value {
+    background: var(--theme-deafult);
+    color: #fff;
+    border-radius: 20px;
+    padding: 2px 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+
+    .react-select__multi-value__label {
+      color: #fff;
+    }
+
+  }
+
+  .react-select__multi-value__remove:hover {
+    background: var(--theme-deafult);
+    color: #DE350B;
+  }
+}
+
+.form-switch {
+  .form-check-input {
+    width: 3em;
+    height: 1.5em;
+    margin-right: 10px;
+  }
+
+  .form-check-label {
+    margin-top: 3px;
+  }
+}
+
+/* END Inputs */
+
+.btn {
+  border-radius: 15px !important;
+}
+
+.add-btn {
+  position: fixed;
+  z-index: 997;
+  right: 23px;
+  bottom: 60px;
+  margin-bottom: 0;
+
+  height: 60px;
+  width: 60px;
+  border-radius: 100% !important;
+  padding: 4px 0px 0px 1px;
+}
+
+.save-btn {
+  background-color: $success-color !important;
+  border-color: $success-color !important;
+}
+
+/** Modal */
+.mainModal {
+  position: absolute;
+  right: 3%;
+  z-index: 9999999 !important;
+
+  &.show {
+    z-index: 9999999 !important;
+  }
+
+  .modal-dialog {
+    z-index: 9999999 !important;
+  }
+
+  .modal-content {
+    z-index: 9999999 !important;
+    position: relative;
+  }
+
+  .modal-header {
+    background: var(--theme-deafult);
+    color: #fff;
+    text-align: center;
+    display: block;
+    padding: 10px !important;
+
+    .btn-close {
+      color: #fff;
+      font-size: 10px;
+    }
+  }
+
+  .modal-footer {
+    display: block;
+    padding: 10px !important;
+    text-align: center;
+    color: #fff;
+    border-top: none;
+  }
+
+  .modal-content {
+    border: 1px solid transparent !important;
+    border-radius: 10px;
+  }
+
+  // Ensure react-select dropdowns in mainModal have proper z-index
+  .react-select__menu {
+    z-index: 9999 !important;
+  }
+
+  .react-select__menu-portal {
+    z-index: 9999 !important;
+  }
+
+  &.extras-selection-modal {
+    z-index: 9999999 !important;
+
+    .modal-dialog {
+      z-index: 9999999 !important;
+      margin: 1.75rem auto;
+    }
+
+    .react-select__menu {
+      z-index: 99999 !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .react-select__menu-portal {
+      z-index: 99999 !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .modal-body {
+      overflow: visible !important;
+    }
+
+    .modal-content {
+      overflow: visible !important;
+    }
+
+    // Ensure form-floating doesn't clip the menu
+    .form-floating {
+      overflow: visible !important;
+      z-index: auto !important;
+    }
+  }
+}
+
+// Specific rules for addDetailsModal
+#addDetailsModal {
+  .react-select__menu {
+    z-index: 9999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .react-select__menu-portal {
+    z-index: 9999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+  }
+
+  // Ensure the menu portal div itself has z-index
+  > div[class*="react-select__menu-portal"],
+  body > div[class*="react-select__menu-portal"] {
+    z-index: 9999 !important;
+  }
+
+  .modal-body {
+    overflow: visible !important;
+  }
+
+  .modal-content {
+    overflow: visible !important;
+  }
+
+  // Ensure form-floating doesn't clip the menu
+  .form-floating {
+    overflow: visible !important;
+    z-index: auto !important;
+    position: relative !important;
+  }
+
+  // Ensure the col wrapper has proper z-index
+  [class*="col-"] {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Ensure react-select menu is visible in modals
+body:has(.extras-selection-modal) {
+  .react-select__menu {
+    z-index: 99999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .react-select__menu-portal {
+    z-index: 99999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+#extrasModal {
+  z-index: 9999999 !important;
+
+  .react-select__menu {
+    z-index: 99999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .react-select__menu-portal {
+    z-index: 99999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+// Global rule for react-select menu in extras modal
+body .react-select__menu-portal {
+  z-index: 99999 !important;
+}
+
+body #extrasModal~.react-select__menu-portal,
+body .react-select__menu-portal {
+  z-index: 99999 !important;
+}
+
+// Ensure menu is visible when modal is open
+body.modal-open {
+  .react-select__menu-portal {
+    z-index: 99999 !important;
+    position: fixed !important;
+    pointer-events: auto !important;
+
+    .react-select__menu {
+      z-index: 99999 !important;
+      position: fixed !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .react-select__menu-list {
+      display: block !important;
+      visibility: visible !important;
+    }
+  }
+
+  // Specifically for extras modal
+  #extrasModal~.react-select__menu-portal,
+  .react-select__menu-portal {
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+
+    .react-select__menu {
+      z-index: 99999 !important;
+      position: fixed !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+// Global rule to ensure react-select menu is always visible when open
+.react-select__menu-portal {
+  z-index: 99999 !important;
+  position: fixed !important;
+
+  .react-select__menu {
+    z-index: 99999 !important;
+    position: fixed !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .react-select__menu-list {
+    max-height: 200px;
+    overflow-y: auto;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .react-select__option {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+
+// Global rule for addDetailsModal react-select menus
+// Target menu portal that's rendered at body level when addDetailsModal is open
+body:has(#addDetailsModal.show) .react-select__menu-portal,
+#addDetailsModal ~ .react-select__menu-portal,
+body .react-select__menu-portal {
+  z-index: 9999 !important;
+  position: fixed !important;
+
+  .react-select__menu {
+    z-index: 9999 !important;
+    position: fixed !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+// Specific rule for addDetailsModal
+#addDetailsModal {
+  .react-select__menu-portal {
+    z-index: 9999 !important;
+    position: fixed !important;
+
+    .react-select__menu {
+      z-index: 9999 !important;
+      position: fixed !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+  }
+}
+
+// When modal is open, lower z-index of Select dropdowns outside the modal
+body.modal-open {
+
+  // Lower z-index for all Select dropdowns outside the modal
+  .form-floating:not(#extrasModal .form-floating):not(.extras-selection-modal .form-floating) {
+    z-index: 1000 !important;
+    position: relative;
+
+    .react-select__menu {
+      z-index: 1000 !important;
+    }
+
+    .react-select__menu-portal {
+      z-index: 1000 !important;
+    }
+  }
+
+  // Target all react-select menus that are not inside the extras modal
+  // These menus might be portaled to body, so we need to target them globally
+  .react-select__menu:not(#extrasModal .react-select__menu) {
+    z-index: 1000 !important;
+  }
+
+  .react-select__menu-portal:not(#extrasModal .react-select__menu-portal) {
+    z-index: 1000 !important;
+  }
+
+  // Ensure extras modal menu has highest z-index
+  #extrasModal .react-select__menu-portal {
+    z-index: 99999 !important;
+  }
+
+  // Ensure addDetailsModal react-select menus have proper z-index
+  #addDetailsModal .react-select__menu {
+    z-index: 9999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  #addDetailsModal .react-select__menu-portal {
+    z-index: 9999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  // Ensure modal backdrop is below modal but above other content
+  // The backdrop should cover all Select dropdowns outside the modal
+  .modal-backdrop {
+    z-index: 1040 !important;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  // Ensure backdrop covers everything including Select dropdowns
+  .modal-backdrop.show {
+    z-index: 1040 !important;
+  }
+
+  // Ensure mainModal appears above sidebar
+  .mainModal {
+    z-index: 9999999 !important;
+
+    &.show {
+      z-index: 9999999 !important;
+    }
+
+    .modal-dialog {
+      z-index: 9999999 !important;
+      position: relative;
+    }
+  }
+
+  // Ensure addDetailsModal appears above sidebar
+  #addDetailsModal {
+    z-index: 9999999 !important;
+
+    &.show {
+      z-index: 9999999 !important;
+    }
+
+    .modal-dialog {
+      z-index: 9999999 !important;
+      position: relative;
+    }
+
+    .react-select__menu {
+      z-index: 9999 !important;
+    }
+
+    .react-select__menu-portal {
+      z-index: 9999 !important;
+    }
+  }
+
+  // Ensure the extras modal is above everything and interactive
+  #extrasModal {
+    z-index: 9999999 !important;
+
+    &.show {
+      z-index: 9999999 !important;
+    }
+
+    .modal-dialog {
+      z-index: 9999999 !important;
+      position: relative;
+    }
+  }
+
+  // Ensure modal dialog is above backdrop
+  .modal.show#extrasModal {
+    z-index: 9999999 !important;
+
+    .modal-dialog {
+      z-index: 9999999 !important;
+    }
+  }
+
+  // Ensure modal content is above backdrop and interactive
+  #extrasModal .modal-content {
+    z-index: 9999999 !important;
+    position: relative;
+  }
+}
+
+.pac-container {
+  z-index: 9999999 !important;
+}
+
+.kanban-draggable {
+  height: 70vh;
+}
+
+/* DASHBOARD */
+
+.social-widget-card .h5,
+.social-widget-card h5 {
+  color: rgba(43, 43, 43, .7);
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding: 30px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.redial-social-widget {
+  background-image: linear-gradient(90deg, #f4f4f4 50%, transparent 0, transparent), linear-gradient(90deg, #ecf3fa 50%, #f4f4f4 0, #f4f4f4);
+  font-size: 25px;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
+}
+
+.social-widget-card span {
+  color: rgba(43, 43, 43, .7);
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.redial-social-widget.radial-bar-70 {
+  background-image: linear-gradient(342deg, #7366ff 50%, transparent 0, transparent), linear-gradient(270deg, #7366ff 50%, #f4f4f4 0, #f4f4f4);
+  background-image: linear-gradient(342deg, var(--theme-deafult) 50%, transparent 50%, transparent), linear-gradient(270deg, var(--theme-deafult) 50%, #f4f4f4 50%, #f4f4f4);
+}
+
+
+
+.redial-social-widget,
+.redial-social-widget i {
+  align-items: center;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* timeline */
+
+.timeline {
+  .card-description {
+    margin-top: 0px;
+    padding-left: 0px !important;
+
+    p {
+      color: rgba(82, 82, 108, 0.8);
+    }
+  }
+
+  header {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+
+    h1 {
+      margin-bottom: 0px;
+    }
+  }
+
+  .timeline-horz-card-wrapper.horizontal {
+    border-radius: 8px;
+  }
+
+  .timeline-card-content {
+    width: 100%;
+  }
+
+  .timeline-item-title {
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+}
+
+.file-content .files .file-box .file-top {
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 150px;
+}
+
+.file-manager .files h6,
+.file-manager .files .h6 {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.page-body {
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 575.98px) {
+  .filter-table {
+    margin-top: -20px;
+  }
+}
+
+.static-top-widget svg {
+  color: #fff;
+}
+
+.static-top-widget .media-body {
+  align-self: center !important;
+  padding-left: 30px;
+}
+
+.static-top-widget .media-body .icon-bg {
+  height: 100px;
+  opacity: .2;
+  position: absolute;
+  right: -14px;
+  top: 6px;
+  transition: all .3s ease;
+  width: 100px;
+}
+
+.static-top-widget:hover .icon-bg {
+  -webkit-transform: rotate(-5deg) scale(1.1);
+  transform: rotate(-5deg) scale(1.1);
+  transition: all .3s ease;
+}
+
+.earning-card.card .card-body .earning-content {
+  border-right: 1px solid #ecf3fa;
+}
+
+.earning-card.card .card-body .chart-left {
+  padding: 40px 0 40px 40px;
+}
+
+.earning-card.card .card-body .left_side_earning {
+  margin-bottom: 30px;
+}
+
+.earning-card.card .card-body .left_side_earning .h5,
+.earning-card.card .card-body .left_side_earning h5 {
+  font-weight: 500;
+  line-height: 25px;
+  margin: 0;
+}
+
+.earning-card.card .card-body .left_side_earning p {
+  color: rgba(43, 43, 43, .7);
+  font-size: 14px;
+}
+
+.earning-card.card .card-body .chart-right {
+  padding: 0 40px;
+}

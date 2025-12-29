@@ -1,0 +1,753 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentación API WaaS",
+        "description": "Documentación de la API de WaaS. Es necesario contar con un token de autenticación para poder acceder a los recursos de la API. \n    *       Para ello se debe enviar el token en el header de la petición con el nombre 'Authorization Bearer'.<br>Para obtener la clave de autenticación,\n    *       ingresar al penel, sección de Configuración -> Sistema y luego en API.",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "/api/v1"
+        }
+    ],
+    "paths": {
+        "/api": {},
+        "/contact/": {
+            "$ref": "#/paths/~1client"
+        },
+        "/contact/{id}": {
+            "$ref": "#/paths/~1client~1{id}"
+        },
+        "/brands": {
+            "get": {
+                "tags": [
+                    "Marcas"
+                ],
+                "description": "Listado de marcas",
+                "operationId": "5acde12e5d96b40ee0d5fefa5b75f6fd",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TenantProduct"
+                                            }
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "rows": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/client": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Listado de clientes / contactos",
+                "operationId": "feeae95660774292c6c27d4c0ab96276",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TenantClient"
+                                            }
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "rows": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Crear cliente / contacto",
+                "operationId": "a6b38c8198d0e597f7b4c1f6e04c2dc1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Addclient"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/TenantClient"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/client/{id}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Obtener cliente / contacto por id",
+                "operationId": "204e1781ea4544592a6b5d3c931b75eb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TenantClient"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Actualizar cliente / contacto",
+                "operationId": "f78be9e8e8097a18ca0b6e7b2ef8f386",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Addclient"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/TenantClient"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/product": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "description": "Listado de productos",
+                "operationId": "d0adefe294c920f508d3a170cdb26398",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TenantProduct"
+                                            }
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        },
+                                        "page": {
+                                            "type": "integer"
+                                        },
+                                        "rows": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/proposal/create": {
+            "post": {
+                "tags": [
+                    "Propuestas"
+                ],
+                "description": "Crear propuesta",
+                "operationId": "30ef0710a1d9aa69a6d0a6489681c059",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddProposal"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/TenantProposal"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/proposal/accept/{pid}/{did}": {
+            "post": {
+                "tags": [
+                    "Propuestas"
+                ],
+                "description": "Aceptar propuesta",
+                "operationId": "5d6c8ceb6844c395287f936686c58c90",
+                "parameters": [
+                    {
+                        "name": "pid",
+                        "in": "path",
+                        "description": "Id de la propuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "did",
+                        "in": "path",
+                        "description": "Id del detalle de la propuesta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TenantProduct": {
+                "title": "Schema de Productos",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "stock": {
+                        "type": "integer"
+                    },
+                    "stock_min": {
+                        "type": "integer"
+                    },
+                    "stock_max": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "attributes": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "home_prices": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "number"
+                                },
+                                "duties": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "business_prices": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "number"
+                                },
+                                "duties": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "TenantClient": {
+                "title": "Schema de Clientes",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "external_id": {
+                        "type": "string"
+                    },
+                    "company_name": {
+                        "type": "string"
+                    },
+                    "logo": {
+                        "type": "string"
+                    },
+                    "contact_name": {
+                        "type": "string"
+                    },
+                    "contact_lastname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    },
+                    "origin": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "responsible": {
+                        "type": "string"
+                    },
+                    "activity": {
+                        "type": "string"
+                    },
+                    "business_name": {
+                        "type": "string"
+                    },
+                    "main_address": {
+                        "type": "string"
+                    },
+                    "address_complete": {
+                        "type": "object"
+                    },
+                    "expired": {
+                        "type": "boolean"
+                    },
+                    "last_change": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Addclient": {
+                "title": "Schema de Alta de Clientes",
+                "properties": {
+                    "external_id": {
+                        "type": "string"
+                    },
+                    "company_name": {
+                        "type": "string"
+                    },
+                    "contact_name": {
+                        "type": "string"
+                    },
+                    "contact_lastname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    },
+                    "responsible": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Address"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "AddProposal": {
+                "title": "Schema de Alta de Propuestas",
+                "properties": {
+                    "products": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "quantities": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "discount": {
+                                    "type": "string"
+                                },
+                                "dues": {
+                                    "type": "string"
+                                },
+                                "extra_id": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "init_amount": {
+                                    "type": "string"
+                                },
+                                "installation": {
+                                    "type": "string"
+                                },
+                                "installation_cost": {
+                                    "type": "string"
+                                },
+                                "iva": {
+                                    "type": "string"
+                                },
+                                "last_amount": {
+                                    "type": "string"
+                                },
+                                "maintenance": {
+                                    "type": "string"
+                                },
+                                "notes": {
+                                    "type": "string"
+                                },
+                                "price": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "client_id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TenantProposal": {
+                "title": "Schema de Propuesta",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "client_id": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    },
+                    "products": {
+                        "type": "string"
+                    },
+                    "quantities": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "rejection_reason": {
+                        "type": "string"
+                    },
+                    "is_horeca": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Address": {
+                "title": "Schema de Direcciones",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "contact_name": {
+                        "type": "string"
+                    },
+                    "contact_phone": {
+                        "type": "string"
+                    },
+                    "full_address": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "number": {
+                        "type": "string"
+                    },
+                    "door": {
+                        "type": "string"
+                    },
+                    "urb": {
+                        "type": "string"
+                    },
+                    "postal_code": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "province": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "lat": {
+                        "type": "string"
+                    },
+                    "long": {
+                        "type": "string"
+                    },
+                    "notes": {
+                        "type": "string"
+                    },
+                    "principal": {
+                        "type": "boolean"
+                    },
+                    "billing": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}

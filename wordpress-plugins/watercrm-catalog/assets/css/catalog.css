@@ -1,0 +1,317 @@
+/**
+ * WaterCRM Catalog Styles
+ */
+
+/* Products Grid */
+.watercrm-products-grid {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.watercrm-columns-2 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.watercrm-columns-3 {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.watercrm-columns-4 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+@media (max-width: 768px) {
+    .watercrm-products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Product Item */
+.watercrm-product-item {
+    position: relative;
+}
+
+.watercrm-product-inner {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.watercrm-product-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.watercrm-product-image {
+    position: relative;
+    padding-top: 75%;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.watercrm-product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.watercrm-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.watercrm-badge-featured {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+.watercrm-product-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.watercrm-product-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: #333;
+}
+
+.watercrm-product-model {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.watercrm-product-category {
+    margin: 0 0 1rem;
+}
+
+.watercrm-category-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.watercrm-product-description {
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #555;
+    flex: 1;
+}
+
+.watercrm-product-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+}
+
+.watercrm-attribute-tag {
+    padding: 4px 8px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.watercrm-product-actions {
+    margin-top: auto;
+}
+
+.watercrm-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.watercrm-btn-primary {
+    background: #1976d2;
+    color: #fff;
+}
+
+.watercrm-btn-primary:hover {
+    background: #1565c0;
+    color: #fff;
+}
+
+/* Single Product */
+.watercrm-single-product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .watercrm-single-product {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.watercrm-product-gallery {
+    position: sticky;
+    top: 20px;
+}
+
+.watercrm-main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.watercrm-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.watercrm-thumbnail {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.watercrm-thumbnail:hover {
+    border-color: #1976d2;
+}
+
+.watercrm-product-details h1 {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.watercrm-product-details h3 {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.watercrm-attributes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.watercrm-attributes-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.watercrm-attributes-list li:last-child {
+    border-bottom: none;
+}
+
+.watercrm-documents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.watercrm-documents-list li {
+    margin: 0.5rem 0;
+}
+
+.watercrm-doc-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.watercrm-doc-link:hover {
+    background: #e0e0e0;
+}
+
+/* Categories List */
+.watercrm-categories-list {
+    margin: 2rem 0;
+}
+
+.watercrm-category-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.watercrm-category-item {
+    margin: 0;
+}
+
+.watercrm-category-link {
+    display: block;
+    padding: 10px 20px;
+    background: #fff;
+    border: 2px solid #1976d2;
+    border-radius: 4px;
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.watercrm-category-link:hover {
+    background: #1976d2;
+    color: #fff;
+}
+
+/* Messages */
+.watercrm-no-products,
+.watercrm-no-categories,
+.watercrm-error {
+    padding: 2rem;
+    text-align: center;
+    background: #f5f5f5;
+    border-radius: 8px;
+    color: #666;
+}
+
+.watercrm-error {
+    background: #ffebee;
+    color: #c62828;
+}

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WaterCRM - El CRM definitivo para empresas de tratamiento de agua. Gestiona instalaciones, presupuestos, clientes y mucho más.">
+    <title>WaterCRM - CRM Profesional para Empresas de Tratamiento de Agua</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient1)"/>
+                        <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" fill="white" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="gradient1" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#3B82F6"/>
+                                <stop offset="100%" stop-color="#1D4ED8"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">WaterCRM</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Características</a>
+                    <a href="#modules">Módulos</a>
+                    <a href="#integrations">Integraciones</a>
+                    <a href="#pricing">Precios</a>
+                    <a href="#contact">Contacto</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#login" class="btn-link">Iniciar Sesión</a>
+                    <a href="#demo" class="btn-primary">Demo Gratis</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="gradient-blob blob-1"></div>
+            <div class="gradient-blob blob-2"></div>
+            <div class="gradient-blob blob-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">✨</span>
+                    <span>Nuevo: Sistema de facturación automática incluido</span>
+                </div>
+                <h1 class="hero-title">
+                    El CRM <span class="gradient-text">definitivo</span> para empresas de tratamiento de agua
+                </h1>
+                <p class="hero-description">
+                    Gestiona instalaciones, presupuestos, clientes, inventario y mucho más.
+                    Todo lo que necesitas para hacer crecer tu negocio en una sola plataforma.
+                </p>
+                <div class="hero-actions">
+                    <a href="#demo" class="btn-hero-primary">
+                        Solicitar Demo
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#video" class="btn-hero-secondary">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 7l5 3-5 3V7z" fill="currentColor"/>
+                        </svg>
+                        Ver Video
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Empresas confían en nosotros</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfacción del cliente</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Soporte disponible</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="screenshot-container">
+                    <img src="images/dashboard-preview.png" alt="WaterCRM Dashboard" class="screenshot-main">
+                    <div class="floating-card card-1">
+                        <div class="card-icon">📊</div>
+                        <div class="card-content">
+                            <div class="card-title">Ingresos del Mes</div>
+                            <div class="card-value">€45,231</div>
+                            <div class="card-trend positive">+12.5%</div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-content">
+                            <div class="card-title">Instalaciones Activas</div>
+                            <div class="card-value">127</div>
+                            <div class="card-trend positive">+8</div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-3">
+                        <div class="card-icon">✅</div>
+                        <div class="card-content">
+                            <div class="card-title">Presupuestos Aceptados</div>
+                            <div class="card-value">89%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Características</span>
+                <h2 class="section-title">Todo lo que necesitas para gestionar tu negocio</h2>
+                <p class="section-description">
+                    Diseñado específicamente para empresas de tratamiento de agua, con todas las funcionalidades que realmente necesitas.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#EEF2FF"/>
+                            <path d="M16 8v16m-8-8h16" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Gestión de Instalaciones</h3>
+                    <p class="feature-description">
+                        Control completo de instalaciones con geolocalización, geofencing, y apertura/cierre de órdenes de trabajo.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Más información
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="feature-card featured">
+                    <div class="feature-badge">Más Popular</div>
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#DBEAFE"/>
+                            <path d="M10 16l3 3 8-8" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Presupuestos Inteligentes</h3>
+                    <p class="feature-description">
+                        Genera presupuestos profesionales con plantillas PDF personalizables tipo Elementor. Incluye firma digital.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Más información
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#F0FDF4"/>
+                            <circle cx="16" cy="16" r="6" stroke="#16A34A" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Wallet Digital</h3>
+                    <p class="feature-description">
+                        Sistema de cartera digital para comerciales e instaladores. Control total de depósitos y pagos en efectivo.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Más información
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#FEF3C7"/>
+                            <path d="M16 12v8m-4-4h8" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Sistema de Incidencias</h3>
+                    <p class="feature-description">
+                        Gestión automática y manual de incidencias con notificaciones en tiempo real. Nunca pierdas un cliente.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Más información
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#FEE2E2"/>
+                            <path d="M12 16h8M16 12v8" stroke="#DC2626" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Mensajería Interna</h3>
+                    <p class="feature-description">
+                        Comunicación fluida entre usuarios y clientes. Todo centralizado en una sola plataforma.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Más información
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#F3E8FF"/>
+                            <path d="M20 12l-8 8m0-8l8 8" stroke="#9333EA" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Gestión de Gastos</h3>
+                    <p class="feature-description">
+                        Control de gastos comerciales con OCR para reconocimiento de tickets. Aprobación y seguimiento completo.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Más información
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshot Section -->
+    <section class="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Interfaz</span>
+                <h2 class="section-title">Diseño moderno y fácil de usar</h2>
+                <p class="section-description">
+                    Interfaz intuitiva diseñada para maximizar la productividad de tu equipo.
+                </p>
+            </div>
+
+            <div class="screenshot-tabs">
+                <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+                <button class="tab-btn" data-tab="installations">Instalaciones</button>
+                <button class="tab-btn" data-tab="budgets">Presupuestos</button>
+                <button class="tab-btn" data-tab="clients">Clientes</button>
+                <button class="tab-btn" data-tab="reports">Informes</button>
+            </div>
+
+            <div class="screenshot-content">
+                <div class="tab-pane active" data-pane="dashboard">
+                    <div class="screenshot-wrapper">
+                        <img src="images/screenshot-dashboard.png" alt="Dashboard WaterCRM" class="screenshot-img">
+                        <div class="screenshot-overlay">
+                            <div class="overlay-tag tag-1">KPIs en Tiempo Real</div>
+                            <div class="overlay-tag tag-2">Gráficas Interactivas</div>
+                            <div class="overlay-tag tag-3">Multi-Tenancy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-pane="installations">
+                    <div class="screenshot-wrapper">
+                        <img src="images/screenshot-installations.png" alt="Instalaciones WaterCRM" class="screenshot-img">
+                        <div class="screenshot-overlay">
+                            <div class="overlay-tag tag-1">Geolocalización</div>
+                            <div class="overlay-tag tag-2">Órdenes de Trabajo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-pane="budgets">
+                    <div class="screenshot-wrapper">
+                        <img src="images/screenshot-budgets.png" alt="Presupuestos WaterCRM" class="screenshot-img">
+                        <div class="screenshot-overlay">
+                            <div class="overlay-tag tag-1">Plantillas PDF</div>
+                            <div class="overlay-tag tag-2">Firma Digital</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-pane="clients">
+                    <div class="screenshot-wrapper">
+                        <img src="images/screenshot-clients.png" alt="Clientes WaterCRM" class="screenshot-img">
+                        <div class="screenshot-overlay">
+                            <div class="overlay-tag tag-1">Gestión Completa</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" data-pane="reports">
+                    <div class="screenshot-wrapper">
+                        <img src="images/screenshot-reports.png" alt="Informes WaterCRM" class="screenshot-img">
+                        <div class="screenshot-overlay">
+                            <div class="overlay-tag tag-1">Análisis Avanzado</div>
+                            <div class="overlay-tag tag-2">Exportación</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Módulos</span>
+                <h2 class="section-title">Funcionalidades completas para tu negocio</h2>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-number">01</div>
+                    <h3 class="module-title">Calculadora HORECA</h3>
+                    <p class="module-description">Calcula automáticamente necesidades de tratamiento de agua para hoteles, restaurantes y cafeterías.</p>
+                    <ul class="module-features">
+                        <li>Cálculo automático de caudal</li>
+                        <li>Recomendación de equipos</li>
+                        <li>Ahorro estimado</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">02</div>
+                    <h3 class="module-title">Calculadora de Ahorro</h3>
+                    <p class="module-description">Muestra al cliente cuánto puede ahorrar con tu solución de tratamiento de agua.</p>
+                    <ul class="module-features">
+                        <li>Configuración por marca de agua</li>
+                        <li>Cálculos personalizables</li>
+                        <li>Reportes visuales</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">03</div>
+                    <h3 class="module-title">Multi-Tenancy</h3>
+                    <p class="module-description">Gestiona múltiples empresas desde una sola instalación con subdominioscompletos.</p>
+                    <ul class="module-features">
+                        <li>Bases de datos aisladas</li>
+                        <li>Dominios personalizados</li>
+                        <li>Facturación por uso</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">04</div>
+                    <h3 class="module-title">Gestión de Productos</h3>
+                    <p class="module-description">Catálogo completo con fichas técnicas, atributos destacados y extras configurables.</p>
+                    <ul class="module-features">
+                        <li>Familias y categorías</li>
+                        <li>Fichas técnicas PDF</li>
+                        <li>Gestión de recambios</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">05</div>
+                    <h3 class="module-title">Contratos Configurables</h3>
+                    <p class="module-description">Carga PDFs personalizados, selecciona campos rellenables y firma digital.</p>
+                    <ul class="module-features">
+                        <li>Campos dinámicos</li>
+                        <li>Firma digital integrada</li>
+                        <li>Archivo en cliente</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">06</div>
+                    <h3 class="module-title">Plugins WordPress</h3>
+                    <p class="module-description">Integración completa con WordPress para catálogo web y captura de leads.</p>
+                    <ul class="module-features">
+                        <li>Catálogo de productos</li>
+                        <li>Formularios de contacto</li>
+                        <li>Sincronización automática</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section id="integrations" class="integrations">
+        <div class="container">
+            <div class="integrations-content">
+                <div class="integrations-text">
+                    <span class="section-badge">Integraciones</span>
+                    <h2 class="section-title">Conecta con tus herramientas favoritas</h2>
+                    <p class="section-description">
+                        WaterCRM se integra perfectamente con las herramientas que ya usas en tu día a día.
+                    </p>
+                    <ul class="integrations-list">
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12l2 2 4-4" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                            </svg>
+                            <span>Google Maps API para geolocalización</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12l2 2 4-4" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                            </svg>
+                            <span>WordPress para sitio web corporativo</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12l2 2 4-4" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                            </svg>
+                            <span>SMTP para notificaciones por email</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12l2 2 4-4" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                            </svg>
+                            <span>API REST completa para integraciones custom</span>
+                        </li>
+                    </ul>
+                    <a href="#api-docs" class="btn-secondary">Ver Documentación API</a>
+                </div>
+                <div class="integrations-logos">
+                    <div class="logo-grid">
+                        <div class="integration-logo">Google Maps</div>
+                        <div class="integration-logo">WordPress</div>
+                        <div class="integration-logo">PostgreSQL</div>
+                        <div class="integration-logo">Redis</div>
+                        <div class="integration-logo">Laravel</div>
+                        <div class="integration-logo">React</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Precios</span>
+                <h2 class="section-title">Planes flexibles que se adaptan a ti</h2>
+                <p class="section-description">
+                    Empieza gratis y escala según tus necesidades. Sin costes ocultos.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Starter</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">€29.99</span>
+                            <span class="price-period">/mes</span>
+                        </div>
+                        <p class="pricing-description">Perfecto para empezar</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Hasta 5 usuarios</li>
+                        <li>✓ 10 GB de almacenamiento</li>
+                        <li>✓ 3 módulos incluidos</li>
+                        <li>✓ Soporte por email</li>
+                        <li>✓ Actualizaciones automáticas</li>
+                    </ul>
+                    <a href="#" class="btn-pricing">Empezar Ahora</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Más Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Business</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">€79.99</span>
+                            <span class="price-period">/mes</span>
+                        </div>
+                        <p class="pricing-description">Para empresas en crecimiento</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Hasta 20 usuarios</li>
+                        <li>✓ 100 GB de almacenamiento</li>
+                        <li>✓ Todos los módulos</li>
+                        <li>✓ Soporte prioritario 24/7</li>
+                        <li>✓ Integraciones personalizadas</li>
+                        <li>✓ Formación incluida</li>
+                    </ul>
+                    <a href="#" class="btn-pricing primary">Empezar Ahora</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">Enterprise</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Personalizado</span>
+                        </div>
+                        <p class="pricing-description">Soluciones a medida</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Usuarios ilimitados</li>
+                        <li>✓ Almacenamiento ilimitado</li>
+                        <li>✓ Todos los módulos</li>
+                        <li>✓ Soporte dedicado</li>
+                        <li>✓ SLA garantizado</li>
+                        <li>✓ Desarrollo personalizado</li>
+                        <li>✓ Servidor dedicado</li>
+                    </ul>
+                    <a href="#" class="btn-pricing">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Listo para transformar tu negocio?</h2>
+                <p class="cta-description">
+                    Únete a cientos de empresas que ya confían en WaterCRM para gestionar su negocio.
+                </p>
+                <div class="cta-actions">
+                    <a href="#demo" class="btn-cta-primary">Solicitar Demo Gratis</a>
+                    <a href="#contact" class="btn-cta-secondary">Hablar con Ventas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                            <rect width="40" height="40" rx="8" fill="url(#gradient2)"/>
+                            <path d="M20 10L28 15V25L20 30L12 25V15L20 10Z" fill="white" opacity="0.9"/>
+                            <defs>
+                                <linearGradient id="gradient2" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#3B82F6"/>
+                                    <stop offset="100%" stop-color="#1D4ED8"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="logo-text">WaterCRM</span>
+                    </div>
+                    <p class="footer-description">
+                        La solución CRM más completa para empresas de tratamiento de agua.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm3 11H6V9h2v5zm-1-6a1 1 0 110-2 1 1 0 010 2zm6 6h-2v-2.5c0-.8-.7-1.5-1.5-1.5S8 10.7 8 11.5V14H6v-5h2v.5c.5-.5 1.2-.5 1.5-.5 1.7 0 3 1.3 3 3V14z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 001.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 00-7 3.74 11.65 11.65 0 01-8.45-4.3 4.1 4.1 0 001.27 5.49A4.05 4.05 0 01.8 7.7v.05a4.1 4.1 0 003.3 4.03 4.1 4.1 0 01-1.86.07 4.1 4.1 0 003.83 2.85A8.23 8.23 0 010 16.4a11.62 11.62 0 006.29 1.84"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Producto</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Características</a></li>
+                        <li><a href="#modules">Módulos</a></li>
+                        <li><a href="#pricing">Precios</a></li>
+                        <li><a href="#integrations">Integraciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Soporte</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Términos</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 WaterCRM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,995 @@
+/* ============================================
+   Tablet Landscape Responsive Styles
+   Optimized for tablets in horizontal orientation (768px - 1024px)
+   ============================================ */
+
+/* ============================================
+   Global Logo Fixes - Apply to ALL screen sizes
+   Fixes logo breaking on resize/navigation for both Central and Tenant
+   ============================================ */
+
+/* Header logo wrapper - prevent logo from breaking - GLOBAL FIX */
+.header-logo-wrapper {
+  max-width: 200px !important;
+  height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  
+  .logo-wrapper {
+    max-width: 100% !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    padding: 5px 10px !important;
+    box-sizing: border-box;
+    
+    a {
+      display: flex !important;
+      align-items: center !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      justify-content: flex-start;
+      box-sizing: border-box;
+    }
+    
+    img,
+    .header-logo-img,
+    img.img-fluid {
+      max-height: 50px !important;
+      max-width: 180px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      display: block !important;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    
+    // Prevent both light and dark logos from showing at once
+    .for-light,
+    .for-dark {
+      max-height: 50px !important;
+      max-width: 180px !important;
+    }
+  }
+}
+
+// Ensure header layout doesn't break - GLOBAL
+.page-header .header-wrapper {
+  .header-logo-wrapper {
+    flex: 0 0 auto !important;
+    max-width: 200px !important;
+    min-width: 120px;
+  }
+}
+
+// Prevent logo from expanding on any state change - GLOBAL
+// Apply to all possible page-wrapper states for both Central and Tenant
+.page-wrapper.compact-wrapper .header-logo-wrapper,
+.page-wrapper .header-logo-wrapper,
+.page-wrapper.close_icon .header-logo-wrapper,
+.page-wrapper.horizontal-wrapper .header-logo-wrapper,
+.page-wrapper.modern-type .header-logo-wrapper,
+.page-wrapper.only-body .header-logo-wrapper,
+.page-wrapper.compact-sidebar .header-logo-wrapper,
+.page-wrapper.compact-small .header-logo-wrapper {
+  max-width: 200px !important;
+  height: 50px !important;
+  
+  .logo-wrapper {
+    max-width: 100% !important;
+    height: 50px !important;
+    
+    img,
+    .header-logo-img {
+      max-height: 50px !important;
+      max-width: 180px !important;
+    }
+  }
+}
+
+// Additional specificity for header wrapper to ensure logo constraints
+.page-header .header-wrapper .header-logo-wrapper,
+.page-header .header-logo-wrapper {
+  max-width: 200px !important;
+  height: 50px !important;
+  flex: 0 0 auto !important;
+}
+
+/* Touch-friendly minimum sizes (44x44px recommended by Apple/Google) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  
+  /* Ensure touch targets are at least 44x44px */
+  button, 
+  a, 
+  input[type="button"], 
+  input[type="submit"],
+  .btn,
+  .toggle-sidebar,
+  .sidebar-toggle,
+  .sidebar-icon,
+  .nav-link,
+  .dropdown-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 16px;
+    touch-action: manipulation; /* Prevent double-tap zoom */
+  }
+
+  /* Sidebar optimizations for tablet */
+  .sidebar-wrapper {
+    width: 260px;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10000;
+    background: var(--white, #fff);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+    
+    &.close_icon {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Page body adjustments */
+  .page-body-wrapper {
+    .page-body {
+      padding: 15px;
+      width: 100%;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+  }
+  
+  /* Prevent horizontal scroll on page wrapper */
+  .page-wrapper {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Header optimizations */
+  .page-header {
+    padding: 12px 15px;
+    height: auto;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      
+      .toggle-sidebar {
+        display: block !important;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
+      }
+    }
+  }
+
+  /* Additional tablet-specific logo constraints (already covered globally above) */
+
+  /* Card and content spacing */
+  .card {
+    margin-bottom: 15px;
+    
+    .card-body {
+      padding: 15px;
+    }
+  }
+
+  /* Form elements touch-friendly */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  textarea,
+  select {
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 10px 12px;
+  }
+
+  /* Table responsive */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Dashboard cards - better spacing for tablet */
+  .dashboard-sec {
+    .col-xl-3,
+    .col-xl-4,
+    .col-xl-6,
+    .col-xl-9,
+    .col-xl-12 {
+      margin-bottom: 15px;
+    }
+  }
+
+  /* Navigation menu items */
+  .sidebar-menu {
+    .sidebar-links {
+      li {
+        a {
+          min-height: 44px;
+          padding: 12px 15px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  /* Modal dialogs */
+  .modal-dialog {
+    margin: 20px auto;
+    max-width: 90%;
+  }
+
+  /* Buttons spacing */
+  .btn-group {
+    .btn {
+      min-width: 44px;
+    }
+  }
+
+  /* Search input */
+  .Typeahead-input {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  /* Dropdown menus */
+  .dropdown-menu {
+    min-width: 200px;
+    
+    .dropdown-item {
+      min-height: 44px;
+      padding: 10px 15px;
+    }
+  }
+
+  /* Scroll areas - smooth scrolling on touch */
+  .custom-scrollbar,
+  .perfect-scrollbar {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+
+  /* Prevent text selection on interactive elements during touch */
+  button,
+  .btn,
+  .nav-link,
+  .sidebar-link {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    user-select: none;
+  }
+
+  /* Better spacing for grid layouts */
+  .row {
+    margin-left: -10px;
+    margin-right: -10px;
+    
+    [class*="col-"] {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  /* Custom tablet column classes */
+  .col-tablet-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-tablet-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Header right menu items */
+  .nav-menus {
+    li {
+      min-width: 44px;
+      min-height: 44px;
+      
+      a, button, div[role="button"] {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  /* Overlay for mobile menu */
+  .bg-overlay1 {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+
+  /* Chart containers */
+  .chart-container,
+  .earning-card {
+    padding: 15px;
+  }
+
+  /* Profile dropdown */
+  .profile-nav {
+    .media.profile-media {
+      min-height: 44px;
+      padding: 5px 10px;
+    }
+    
+    .profile-dropdown {
+      li {
+        min-height: 44px;
+        padding: 10px 15px;
+        
+        a {
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  /* Forms - better spacing on tablet */
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  /* Input groups */
+  .input-group {
+    .input-group-text {
+      min-height: 44px;
+      padding: 10px 12px;
+    }
+  }
+
+  /* Select dropdowns */
+  .select2-container,
+  .react-select-container {
+    .select2-selection,
+    .react-select__control {
+      min-height: 44px;
+    }
+  }
+
+  /* Tables - better scrolling */
+  table {
+    font-size: 14px;
+    
+    th, td {
+      padding: 12px 10px;
+      min-height: 44px;
+    }
+  }
+
+  /* Badges and labels */
+  .badge {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  /* Pagination */
+  .pagination {
+    .page-link {
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+  }
+
+  /* Tabs */
+  .nav-tabs {
+    .nav-link {
+      min-height: 44px;
+      padding: 10px 15px;
+    }
+  }
+
+  /* Accordion */
+  .accordion {
+    .accordion-button {
+      min-height: 44px;
+      padding: 12px 15px;
+    }
+  }
+}
+
+/* Specific styles for landscape orientation */
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  /* Optimize layout for landscape tablet */
+  .page-wrapper {
+    .page-body-wrapper {
+      .sidebar-wrapper {
+        width: 240px;
+      }
+      
+      .page-body {
+        margin-left: 0;
+        padding: 15px;
+      }
+    }
+  }
+
+  /* Dashboard grid - show 2 columns instead of 4 in landscape */
+  .dashboard-sec {
+    .col-xl-3 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  /* Better use of horizontal space */
+  .row {
+    .col-sm-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    
+    .col-md-4 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+    }
+  }
+
+  /* Header - more compact in landscape */
+  .page-header {
+    height: auto;
+    min-height: 60px;
+    padding: 10px 15px;
+  }
+
+  /* Sidebar menu - show more items visible in landscape */
+  .sidebar-menu {
+    .sidebar-links {
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Sidebar width adjustment for landscape */
+  .sidebar-wrapper {
+    width: 240px;
+  }
+
+  /* Forms - better horizontal layout */
+  .form-row,
+  .row {
+    .col-lg-2 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    
+    .col-lg-4 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  /* Better card layouts in landscape */
+  .card {
+    .card-header {
+      padding: 15px;
+      min-height: 50px;
+    }
+    
+    .card-body {
+      padding: 15px;
+    }
+  }
+
+
+  /* Page body adjusts when sidebar is closed */
+  .page-wrapper.compact-wrapper {
+    .page-body-wrapper {
+      .page-body {
+        margin-left: 0;
+      }
+    }
+  }
+
+  /* Better spacing for action buttons */
+  .btn-group-vertical,
+  .btn-group {
+    .btn {
+      min-height: 44px;
+      padding: 10px 16px;
+    }
+  }
+
+  /* Floating labels and inputs */
+  .form-floating {
+    input,
+    textarea,
+    select {
+      min-height: 44px;
+      padding-top: 1.625rem;
+      padding-bottom: 0.625rem;
+    }
+    
+    label {
+      padding: 1rem 0.75rem;
+    }
+  }
+
+  /* Data tables - better touch scrolling */
+  .dataTables_wrapper {
+    .dataTables_scrollBody {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* React DataTable (react-data-table-component) - prevent horizontal scroll on tablets */
+  .filter-table {
+    width: 100%;
+    overflow-x: hidden;
+    max-width: 100%;
+    
+    > div {
+      width: 100%;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    
+    .rdt_TableWrapper {
+      width: 100% !important;
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+    }
+    
+    .rdt_Table {
+      width: 100% !important;
+      min-width: auto !important;
+      max-width: 100% !important;
+      table-layout: auto;
+      
+      .rdt_TableHead {
+        .rdt_TableHeadRow {
+          .rdt_TableCol {
+            padding: 10px 8px !important;
+            font-size: 13px !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+          }
+        }
+      }
+      
+      .rdt_TableBody {
+        .rdt_TableRow {
+          .rdt_TableCell {
+            padding: 10px 8px !important;
+            font-size: 13px !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+            
+            // Handle nested content
+            div {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              
+              small {
+                display: block;
+                font-size: 11px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
+            
+            .badge {
+              font-size: 11px;
+              padding: 4px 8px;
+              display: inline-block;
+              margin-bottom: 4px;
+              white-space: nowrap;
+            }
+            
+            svg, button, a {
+              width: 20px;
+              height: 20px;
+              padding: 4px;
+              flex-shrink: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* Ensure table container doesn't overflow */
+  .card-body,
+  .page-body {
+    .filter-table {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+  }
+
+  /* Switches and toggles */
+  .form-check-input {
+    width: 44px;
+    height: 24px;
+  }
+
+  .form-switch {
+    .form-check-input {
+      width: 48px;
+      height: 26px;
+    }
+  }
+}
+
+/* Touch gestures optimization */
+@media (hover: none) and (pointer: coarse) {
+  /* This targets touch devices specifically */
+  
+  /* Hover effects should work on touch */
+  button:hover,
+  .btn:hover,
+  a:hover {
+    opacity: 0.8;
+  }
+
+  /* Remove hover-only content that won't work on touch */
+  .hover-only {
+    display: block;
+  }
+}
+
+/* Prevent zoom on input focus (iOS Safari) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="search"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    font-size: 16px !important; /* 16px prevents zoom on iOS */
+  }
+}
+
+/* Note: Column hiding for Referencia and Actividad is handled by useResponsiveColumns hook */
+/* The hook now hides these columns when width < 1500px (tablet breakpoint) */
+
+/* Mobile and Tablet: Compact table cells and dropdowns */
+@media screen and (max-width: 1499px) {
+  /* Reduce padding in table cells on mobile/tablet */
+  .filter-table {
+    /* Ensure table wrapper allows overflow for dropdowns */
+    overflow: visible !important;
+    
+    .rdt_TableWrapper {
+      overflow: visible !important;
+    }
+    
+    .rdt_Table {
+      overflow: visible !important;
+      
+      .rdt_TableHead {
+        .rdt_TableHeadRow {
+          .rdt_TableCol {
+            padding: 6px 4px !important;
+            font-size: 12px !important;
+          }
+        }
+      }
+      
+      .rdt_TableBody {
+        overflow: visible !important;
+        
+        .rdt_TableRow {
+          overflow: visible !important;
+          
+          .rdt_TableCell {
+            padding: 6px 4px !important;
+            font-size: 12px !important;
+            overflow: visible !important;
+            position: relative !important;
+            
+            /* Reduce margins in action columns */
+            div {
+              margin: 0;
+              padding: 2px 0;
+            }
+            
+            /* Compact badges */
+            .badge {
+              font-size: 10px !important;
+              padding: 2px 6px !important;
+              margin: 2px 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* Compact dropdown button for actions */
+  .filter-table .rdt_TableBody .rdt_TableRow .rdt_TableCell {
+    position: relative !important;
+    overflow: visible !important;
+    
+    .btn-sm {
+      padding: 2px 4px !important;
+      min-width: 28px !important;
+      min-height: 28px !important;
+      font-size: 12px !important;
+      cursor: pointer !important;
+      
+      svg {
+        width: 14px !important;
+        height: 14px !important;
+      }
+    }
+    
+    /* Ensure dropdown container is positioned correctly */
+    .dropdown {
+      position: relative !important;
+      display: inline-block !important;
+    }
+    
+    /* Compact dropdown menu */
+    .dropdown-menu {
+      min-width: 140px !important;
+      padding: 2px 0 !important;
+      font-size: 12px !important;
+      z-index: 1050 !important;
+      position: absolute !important;
+      
+      &.show {
+        display: block !important;
+      }
+      
+      .dropdown-item {
+        padding: 3px 8px !important;
+        font-size: 12px !important;
+        min-height: 32px !important;
+        display: flex;
+        align-items: center;
+        cursor: pointer !important;
+        
+        svg {
+          width: 12px !important;
+          height: 12px !important;
+          margin-right: 4px !important;
+        }
+      }
+      
+      .dropdown-divider {
+        margin: 2px 0 !important;
+      }
+    }
+  }
+  
+  /* Compact traffic lights columns (A. and Pr.) */
+  .filter-table .rdt_TableBody .rdt_TableRow .rdt_TableCell {
+    /* Vertical alignment columns */
+    div.d-flex.flex-column {
+      padding: 2px 0 !important;
+      margin: 0 !important;
+    }
+  }
+  
+  /* Reduce spacing between A., Pr., and Acciones columns */
+  .filter-table .rdt_Table {
+    .rdt_TableHeadRow,
+    .rdt_TableRow {
+      /* Target columns by their header names - reduce width and padding */
+      .rdt_TableCol:nth-last-child(3), /* A. column */
+      .rdt_TableCol:nth-last-child(2), /* Pr. column */
+      .rdt_TableCol:last-child,        /* Acciones column */
+      .rdt_TableCell:nth-last-child(3), /* A. column */
+      .rdt_TableCell:nth-last-child(2), /* Pr. column */
+      .rdt_TableCell:last-child {       /* Acciones column */
+        padding-left: 2px !important;
+        padding-right: 2px !important;
+        max-width: 60px !important;
+        width: auto !important;
+      }
+      
+      /* Even tighter for A. and Pr. columns */
+      .rdt_TableCol:nth-last-child(3),
+      .rdt_TableCol:nth-last-child(2),
+      .rdt_TableCell:nth-last-child(3),
+      .rdt_TableCell:nth-last-child(2) {
+        max-width: 50px !important;
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+      }
+    }
+  }
+  
+  /* Reduce right padding for Estado column (column before A., Pr., Acciones) */
+  .filter-table .rdt_Table {
+    .rdt_TableHeadRow,
+    .rdt_TableRow {
+      .rdt_TableCol:nth-last-child(4), /* Estado column header */
+      .rdt_TableCell:nth-last-child(4) { /* Estado column cell */
+        padding-right: 2px !important;
+        max-width: 100px !important;
+      }
+    }
+  }
+  
+  /* Reduce padding for Email / Teléfono column */
+  .filter-table .rdt_Table {
+    .rdt_TableHeadRow,
+    .rdt_TableRow {
+      /* Email/Teléfono is typically 2nd to last before Estado, A., Pr., Acciones */
+      /* So it's 5th from the end */
+      .rdt_TableCol:nth-last-child(5),
+      .rdt_TableCell:nth-last-child(5) {
+        padding-left: 2px !important;
+        padding-right: 2px !important;
+        max-width: 120px !important;
+        
+        div {
+          margin: 0 !important;
+          padding: 0 !important;
+          
+          div {
+            margin-bottom: 2px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Mobile only: Even more compact */
+@media screen and (max-width: 767px) {
+  .filter-table {
+    .rdt_Table {
+      .rdt_TableHead {
+        .rdt_TableHeadRow {
+          .rdt_TableCol {
+            padding: 4px 2px !important;
+            font-size: 11px !important;
+          }
+        }
+      }
+      
+      .rdt_TableBody {
+        .rdt_TableRow {
+          .rdt_TableCell {
+            padding: 4px 2px !important;
+            font-size: 11px !important;
+          }
+        }
+      }
+    }
+  }
+  
+  /* Even smaller dropdown on mobile */
+  .filter-table .rdt_TableBody .rdt_TableRow .rdt_TableCell {
+    position: relative !important;
+    overflow: visible !important;
+    
+    .btn-sm {
+      padding: 1px 3px !important;
+      min-width: 24px !important;
+      min-height: 24px !important;
+      cursor: pointer !important;
+    }
+    
+    .dropdown {
+      position: relative !important;
+      display: inline-block !important;
+    }
+    
+    .dropdown-menu {
+      min-width: 120px !important;
+      font-size: 11px !important;
+      z-index: 1050 !important;
+      position: absolute !important;
+      
+      &.show {
+        display: block !important;
+      }
+      
+      .dropdown-item {
+        padding: 2px 6px !important;
+        font-size: 11px !important;
+        min-height: 28px !important;
+        cursor: pointer !important;
+      }
+    }
+  }
+  
+  /* Even tighter spacing for A., Pr., Acciones on mobile */
+  .filter-table .rdt_Table {
+    .rdt_TableHeadRow,
+    .rdt_TableRow {
+      .rdt_TableCol:nth-last-child(3),
+      .rdt_TableCol:nth-last-child(2),
+      .rdt_TableCol:last-child,
+      .rdt_TableCell:nth-last-child(3),
+      .rdt_TableCell:nth-last-child(2),
+      .rdt_TableCell:last-child {
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+        max-width: 45px !important;
+      }
+      
+      .rdt_TableCol:nth-last-child(3),
+      .rdt_TableCol:nth-last-child(2),
+      .rdt_TableCell:nth-last-child(3),
+      .rdt_TableCell:nth-last-child(2) {
+        max-width: 40px !important;
+      }
+      
+      /* Estado column - reduce right padding on mobile */
+      .rdt_TableCol:nth-last-child(4),
+      .rdt_TableCell:nth-last-child(4) {
+        padding-right: 1px !important;
+        max-width: 90px !important;
+      }
+      
+      /* Email / Teléfono column - reduce padding on mobile */
+      .rdt_TableCol:nth-last-child(5),
+      .rdt_TableCell:nth-last-child(5) {
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+        max-width: 100px !important;
+        
+        div {
+          margin: 0 !important;
+          padding: 0 !important;
+          
+          div {
+            margin-bottom: 1px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
