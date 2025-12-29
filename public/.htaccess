@@ -1,21 +1,175 @@
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
+################################################################################
+# .htaccess optimizado para WaterCRM en Plesk/IONOS
+# Laravel 10.x con configuraciones de seguridad y rendimiento
+################################################################################
 
+# Deshabilitar listado de directorios y MultiViews
+<IfModule mod_negotiation.c>
+    Options -MultiViews -Indexes
+</IfModule>
+
+# ============================================================================
+# REWRITE RULES (Laravel Front Controller Pattern)
+# ============================================================================
+
+<IfModule mod_rewrite.c>
     RewriteEngine On
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Redirect Trailing Slashes If Not A Folder
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Send Requests To Front Controller
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+# ============================================================================
+# SEGURIDAD
+# ============================================================================
+
+# Bloquear acceso a archivos sensibles
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Proteger archivos de configuración
+<FilesMatch "(^#.*#|\.(bak|conf|dist|fla|in[ci]|log|orig|psd|sh|sql|sw[op])|~)$">
+    Require all denied
+</FilesMatch>
+
+# Prevenir acceso a vendor y otros directorios críticos (por si acaso)
+<IfModule mod_rewrite.c>
+    RewriteRule ^(vendor|storage|bootstrap|config|database|resources|routes|tests)/(.*)$ - [F,L]
+</IfModule>
+
+# ============================================================================
+# HEADERS DE SEGURIDAD
+# ============================================================================
+
+<IfModule mod_headers.c>
+    # Prevenir clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Prevenir MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions Policy (antes Feature-Policy)
+    Header always set Permissions-Policy "geolocation=(self), microphone=(), camera=()"
+
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# ============================================================================
+# OPTIMIZACIÓN Y CACHÉ
+# ============================================================================
+
+# Compresión GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Caché de archivos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Imágenes
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # CSS y JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+
+    # HTML y otros
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+# Cache-Control headers para archivos estáticos
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|svg|css|js|woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# ============================================================================
+# MIME TYPES
+# ============================================================================
+
+<IfModule mod_mime.c>
+    # JavaScript
+    AddType application/javascript js
+    AddType text/javascript js
+
+    # JSON
+    AddType application/json json
+
+    # Fonts
+    AddType application/font-woff woff
+    AddType application/font-woff2 woff2
+    AddType application/vnd.ms-fontobject eot
+    AddType font/ttf ttf
+    AddType font/otf otf
+
+    # SVG
+    AddType image/svg+xml svg svgz
+    AddEncoding gzip svgz
+
+    # WebP
+    AddType image/webp webp
+</IfModule>
+
+# ============================================================================
+# PHP SETTINGS (si mod_php está habilitado)
+# ============================================================================
+
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    php_value memory_limit 256M
+    php_value max_execution_time 120
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>
+
+# ============================================================================
+# UTF-8 ENCODING
+# ============================================================================
+
+AddDefaultCharset utf-8
+<IfModule mod_mime.c>
+    AddCharset utf-8 .html .css .js .xml .json .rss .atom
 </IfModule>
