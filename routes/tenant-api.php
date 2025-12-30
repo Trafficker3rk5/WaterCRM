@@ -12,15 +12,17 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Tenant API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
+| These are API routes for tenant-specific operations. They use a different
+| name prefix (tenant.api.) to avoid conflicts with central API routes.
+|
+| IMPORTANTE: Usar 'tenant.api.' como prefijo de nombre, NO 'api.'
+| para evitar conflictos con routes/api.php que usa 'api.'
 |
 */
-Route::name('api.')->prefix('api/v1')->middleware([
+Route::name('tenant.api.')->prefix('api/v1')->middleware([
     'api',
     'validate-api',
     InitializeTenancyByDomain::class,

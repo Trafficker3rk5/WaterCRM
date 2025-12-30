@@ -94,6 +94,15 @@ else
     show_error "Error al descargar Tenant.php"
 fi
 
+# Descargar routes/tenant-api.php corregido (sin conflicto de nombres de rutas)
+echo "Descargando routes/tenant-api.php..."
+curl -s -o routes/tenant-api.php "${GITHUB_RAW_URL}/routes/tenant-api.php"
+if [ $? -eq 0 ]; then
+    show_message "routes/tenant-api.php actualizado (sin conflicto de nombres)"
+else
+    show_error "Error al descargar tenant-api.php"
+fi
+
 # Descargar scripts auxiliares
 echo "Descargando create-tenant-manual.sh..."
 curl -s -o create-tenant-manual.sh "${GITHUB_RAW_URL}/create-tenant-manual.sh"
@@ -102,6 +111,16 @@ if [ $? -eq 0 ]; then
     show_message "create-tenant-manual.sh descargado y hecho ejecutable"
 else
     show_error "Error al descargar create-tenant-manual.sh"
+fi
+
+# Descargar script de reparación rápida
+echo "Descargando fix-server-now.sh..."
+curl -s -o fix-server-now.sh "${GITHUB_RAW_URL}/fix-server-now.sh"
+if [ $? -eq 0 ]; then
+    chmod +x fix-server-now.sh
+    show_message "fix-server-now.sh descargado y hecho ejecutable"
+else
+    show_error "Error al descargar fix-server-now.sh"
 fi
 
 echo ""
@@ -145,6 +164,13 @@ if grep -q "CORREGIDO: Solo forzar HTTPS si FORCE_HTTPS=true" app/Providers/AppS
     show_message "AppServiceProvider con HTTPS condicional"
 else
     show_warning "AppServiceProvider podría forzar HTTPS incorrectamente"
+fi
+
+# Verificar que tenant-api.php NO causa conflicto de nombres
+if grep -q "tenant\.api\." routes/tenant-api.php; then
+    show_message "routes/tenant-api.php usa prefijo 'tenant.api.' (sin conflictos)"
+else
+    show_warning "routes/tenant-api.php podría tener conflicto de nombres con api.php"
 fi
 
 echo ""
