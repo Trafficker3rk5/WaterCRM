@@ -24,10 +24,19 @@ class TenancyServiceProvider extends ServiceProvider
             // Tenant events
             Events\CreatingTenant::class => [],
             Events\TenantCreated::class => [
+                // NOTA: Todos los jobs deshabilitados para creación manual de tenants
+                //
+                // RAZÓN: El usuario MySQL en Plesk no tiene permisos CREATE DATABASE
+                //
+                // PROCESO MANUAL REQUERIDO:
+                // 1. Crear tenant con: ./create-tenant-manual.sh <tenant_id> <domain>
+                // 2. Crear BD manualmente en phpMyAdmin: tenant<tenant_id>
+                // 3. Ejecutar migraciones: php artisan tenants:migrate --tenants=<tenant_id>
+                // 4. Opcionalmente ejecutar seeders: php artisan tenants:seed --tenants=<tenant_id>
                 JobPipeline::make([
-                    Jobs\CreateDatabase::class,
-                    Jobs\MigrateDatabase::class,
-                    Jobs\SeedDatabase::class,
+                    // Jobs\CreateDatabase::class, // DESHABILITADO - sin permisos
+                    // Jobs\MigrateDatabase::class, // DESHABILITADO - ejecutar manualmente
+                    // Jobs\SeedDatabase::class, // DESHABILITADO - ejecutar manualmente
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
@@ -42,8 +51,9 @@ class TenancyServiceProvider extends ServiceProvider
             Events\TenantUpdated::class => [],
             Events\DeletingTenant::class => [],
             Events\TenantDeleted::class => [
+                // NOTA: DeleteDatabase deshabilitado - las bases de datos deben eliminarse manualmente
                 JobPipeline::make([
-                    Jobs\DeleteDatabase::class,
+                    // Jobs\DeleteDatabase::class, // DESHABILITADO - sin permisos
                 ])->send(function (Events\TenantDeleted $event) {
                     return $event->tenant;
                 })->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.

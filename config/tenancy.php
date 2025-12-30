@@ -27,12 +27,16 @@ return [
     | These domains are considered central domains and will not be associated
     | with any tenant. Requests to these domains will operate in central mode.
     |
+    | IMPORTANTE: NO incluir la IP pública (217.154.186.92) aquí, ya que debe
+    | ser tratada como un dominio de tenant para que el sistema multi-tenant
+    | funcione correctamente.
+    |
     */
 
     'central_domains' => [
         'localhost',
         'localhost:8000',
-        'crm-prueba.test',
+        // NO incluir IPs públicas aquí - deben ser dominios de tenant
     ],
 
     /*
