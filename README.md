@@ -412,12 +412,20 @@ Contraseña: Mario.:123
 
 ## 📚 Documentación Adicional
 
-- **IMPLEMENTATION_STATUS.md** - Estado detallado de implementación
-- **FRONTEND_COMPONENTS.md** - Guía de componentes React
+### Deployment y Configuración
 - **DEPLOYMENT_GUIDE.md** - Guía completa de deployment (745 líneas)
-- **CONTRACT_IMPLEMENTATION.md** - Guía de contratos
+- **PLESK_SETUP.md** - Guía detallada para deployment en Plesk/IONOS
+- **PLESK_QUICKSTART.md** - Inicio rápido en Plesk (5 minutos)
+- **PLESK_GIT_TOOLKIT_ERROR.md** - Solución al error de Laravel Toolkit
+- **DEPLOYMENT_STATUS.md** - Estado actual del deployment en Plesk
+- **NEXT_STEPS.md** - Próximos pasos para completar deployment
 - **SSL-SETUP-COMPLETE.md** - Configuración SSL
 - **WILDCARD-SSL-SETUP.md** - SSL con wildcards
+
+### Documentación Técnica
+- **IMPLEMENTATION_STATUS.md** - Estado detallado de implementación
+- **FRONTEND_COMPONENTS.md** - Guía de componentes React
+- **CONTRACT_IMPLEMENTATION.md** - Guía de contratos
 - **EXECUTIVE_SUMMARY.md** - Resumen ejecutivo del proyecto
 - **landing-page/README.md** - Documentación de landing page
 - **wordpress-plugins/*/README.md** - Guías de plugins
@@ -536,6 +544,21 @@ php artisan test --filter=WalletTest
 
 ## 📦 Deployment
 
+### Deployment en Plesk/IONOS
+
+**¿Desplegando en Plesk?** Tenemos guías específicas para ti:
+
+1. **[NEXT_STEPS.md](NEXT_STEPS.md)** - Guía rápida de próximos pasos
+2. **[PLESK_QUICKSTART.md](PLESK_QUICKSTART.md)** - Inicio rápido (5 minutos)
+3. **[PLESK_SETUP.md](PLESK_SETUP.md)** - Guía completa paso a paso
+4. **[PLESK_GIT_TOOLKIT_ERROR.md](PLESK_GIT_TOOLKIT_ERROR.md)** - Solución a errores comunes
+
+Scripts incluidos:
+- `setup-plesk.sh` - Configuración inicial automática
+- `deploy.sh` - Script de deployment automático
+- `fix-apache-ports.sh` - Corrige conflictos de puertos Apache/nginx
+- `configure-nginx-proxy.sh` - Configura nginx como proxy reverso
+
 ### Production Build
 
 ```bash
@@ -556,7 +579,7 @@ chmod -R 775 storage bootstrap/cache
 chown -R www-data:www-data storage bootstrap/cache
 ```
 
-### Nginx Configuration
+### Otros Servidores (VPS, Railway, etc.)
 
 Ver `DEPLOYMENT_GUIDE.md` para configuración completa de Nginx, SSL, PM2, y más.
 
