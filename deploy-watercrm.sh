@@ -45,7 +45,7 @@ cd "$APP_DIR"
 
 # 1. SINCRONIZAR ARCHIVOS DE CONFIGURACIÓN DESDE GITHUB
 echo ""
-echo "[1/8] Sincronizando archivos de configuración desde GitHub..."
+echo "[1/9] Sincronizando archivos de configuración desde GitHub..."
 echo "----------------------------------------------------------------------"
 
 # Descargar config/tenancy.php actualizado
@@ -66,6 +66,24 @@ else
     show_error "Error al descargar TenancyServiceProvider"
 fi
 
+# Descargar RouteServiceProvider actualizado (CORREGIDO - sin rutas duplicadas)
+echo "Descargando app/Providers/RouteServiceProvider.php..."
+curl -s -o app/Providers/RouteServiceProvider.php "${GITHUB_RAW_URL}/app/Providers/RouteServiceProvider.php"
+if [ $? -eq 0 ]; then
+    show_message "RouteServiceProvider actualizado (rutas duplicadas corregidas)"
+else
+    show_error "Error al descargar RouteServiceProvider"
+fi
+
+# Descargar AppServiceProvider actualizado (CORREGIDO - HTTPS condicional)
+echo "Descargando app/Providers/AppServiceProvider.php..."
+curl -s -o app/Providers/AppServiceProvider.php "${GITHUB_RAW_URL}/app/Providers/AppServiceProvider.php"
+if [ $? -eq 0 ]; then
+    show_message "AppServiceProvider actualizado (HTTPS condicional)"
+else
+    show_error "Error al descargar AppServiceProvider"
+fi
+
 # Descargar modelo Tenant actualizado
 echo "Descargando app/Models/Main/Tenant.php..."
 mkdir -p app/Models/Main
@@ -76,10 +94,20 @@ else
     show_error "Error al descargar Tenant.php"
 fi
 
+# Descargar scripts auxiliares
+echo "Descargando create-tenant-manual.sh..."
+curl -s -o create-tenant-manual.sh "${GITHUB_RAW_URL}/create-tenant-manual.sh"
+if [ $? -eq 0 ]; then
+    chmod +x create-tenant-manual.sh
+    show_message "create-tenant-manual.sh descargado y hecho ejecutable"
+else
+    show_error "Error al descargar create-tenant-manual.sh"
+fi
+
 echo ""
 
 # 2. VERIFICAR ARCHIVOS CRÍTICOS
-echo "[2/8] Verificando archivos críticos..."
+echo "[2/9] Verificando archivos críticos..."
 echo "----------------------------------------------------------------------"
 
 # Verificar que config/tenancy.php tiene la configuración correcta
@@ -105,10 +133,24 @@ else
     show_warning "TenancyServiceProvider podría intentar crear BD (causará errores)"
 fi
 
+# Verificar que RouteServiceProvider NO registra rutas múltiples veces
+if grep -q "CORREGIDO: No usar foreach" app/Providers/RouteServiceProvider.php; then
+    show_message "RouteServiceProvider corregido (sin rutas duplicadas)"
+else
+    show_warning "RouteServiceProvider podría tener rutas duplicadas"
+fi
+
+# Verificar que AppServiceProvider tiene HTTPS condicional
+if grep -q "CORREGIDO: Solo forzar HTTPS si FORCE_HTTPS=true" app/Providers/AppServiceProvider.php; then
+    show_message "AppServiceProvider con HTTPS condicional"
+else
+    show_warning "AppServiceProvider podría forzar HTTPS incorrectamente"
+fi
+
 echo ""
 
 # 3. CONFIGURAR PERMISOS
-echo "[3/8] Configurando permisos..."
+echo "[3/9] Configurando permisos..."
 echo "----------------------------------------------------------------------"
 
 # Crear directorios necesarios
@@ -126,7 +168,7 @@ show_message "Permisos configurados"
 echo ""
 
 # 4. VERIFICAR .ENV
-echo "[4/8] Verificando configuración .env..."
+echo "[4/9] Verificando configuración .env..."
 echo "----------------------------------------------------------------------"
 
 if [ ! -f .env ]; then
@@ -161,7 +203,7 @@ fi
 echo ""
 
 # 5. LIMPIAR CACHÉS
-echo "[5/8] Limpiando cachés de Laravel..."
+echo "[5/9] Limpiando cachés de Laravel..."
 echo "----------------------------------------------------------------------"
 
 php artisan config:clear
@@ -179,7 +221,7 @@ show_message "View cache cleared"
 echo ""
 
 # 6. VERIFICAR CONFIGURACIÓN DE TENANCY
-echo "[6/8] Verificando configuración de tenancy..."
+echo "[6/9] Verificando configuración de tenancy..."
 echo "----------------------------------------------------------------------"
 
 # Verificar que las migraciones principales están ejecutadas
@@ -202,7 +244,7 @@ foreach (\$tenants as \$tenant) {
 echo ""
 
 # 7. OPTIMIZAR PARA PRODUCCIÓN
-echo "[7/8] Optimizando aplicación..."
+echo "[7/9] Optimizando aplicación..."
 echo "----------------------------------------------------------------------"
 
 php artisan config:cache
@@ -214,7 +256,7 @@ show_message "Routes cached"
 echo ""
 
 # 8. PROBAR LA APLICACIÓN
-echo "[8/8] Probando la aplicación..."
+echo "[8/9] Probando la aplicación..."
 echo "----------------------------------------------------------------------"
 
 echo "Probando acceso HTTP local (127.0.0.1:7080)..."
@@ -233,6 +275,30 @@ echo "Probando acceso desde IP pública (217.154.186.92)..."
 HTTP_CODE_PUB=$(curl -s -o /dev/null -w "%{http_code}" http://217.154.186.92)
 echo "  Código HTTP: $HTTP_CODE_PUB"
 
+# 9. VERIFICAR CONFIGURACIÓN DE .ENV
+echo "[9/9] Verificando configuración final de .env..."
+echo "----------------------------------------------------------------------"
+
+# Verificar FORCE_HTTPS
+if grep -q "^FORCE_HTTPS=false" .env; then
+    show_message "FORCE_HTTPS=false (correcto para HTTP)"
+elif grep -q "^FORCE_HTTPS=true" .env; then
+    show_warning "FORCE_HTTPS=true - esto fuerza redirección a HTTPS"
+    echo "  Si no tienes SSL configurado, cambia a false:"
+    echo "  sed -i 's/^FORCE_HTTPS=true/FORCE_HTTPS=false/' .env"
+else
+    show_warning "FORCE_HTTPS no está configurado en .env"
+    echo "  Agregando FORCE_HTTPS=false..."
+    echo "FORCE_HTTPS=false" >> .env
+fi
+
+# Verificar APP_DEBUG
+if grep -q "^APP_DEBUG=true" .env; then
+    show_warning "APP_DEBUG=true - recuerda cambiar a false en producción"
+else
+    show_message "APP_DEBUG=false (modo producción)"
+fi
+
 echo ""
 echo "=========================================="
 echo "  Despliegue completado"
@@ -240,6 +306,8 @@ echo "=========================================="
 echo ""
 echo "Resumen:"
 echo "  - Archivos de configuración sincronizados desde GitHub"
+echo "  - RouteServiceProvider corregido (sin rutas duplicadas)"
+echo "  - AppServiceProvider corregido (HTTPS condicional)"
 echo "  - Permisos configurados"
 echo "  - Cachés limpiados y optimizados"
 echo "  - Configuración de tenancy verificada"
@@ -254,6 +322,9 @@ echo "   tail -50 storage/logs/laravel.log"
 echo ""
 echo "3. Si todo funciona, cambiar APP_DEBUG=false en .env"
 echo ""
-echo "4. Acceder desde el navegador:"
+echo "4. Crear tenants adicionales:"
+echo "   ./create-tenant-manual.sh <tenant_id> <domain>"
+echo ""
+echo "5. Acceder desde el navegador:"
 echo "   http://217.154.186.92"
 echo ""

@@ -24,8 +24,10 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
 
-        // Force HTTPS in production
-        if (config('app.env') === 'production' || env('FORCE_HTTPS', false)) {
+        // CORREGIDO: Solo forzar HTTPS si FORCE_HTTPS=true explícitamente
+        // NO forzar automáticamente en producción porque puede causar problemas
+        // en servidores sin SSL o con proxy inverso (como Plesk con nginx)
+        if (env('FORCE_HTTPS', false) === true || env('FORCE_HTTPS') === 'true') {
             URL::forceScheme('https');
         }
 

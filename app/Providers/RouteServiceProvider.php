@@ -53,23 +53,21 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes()
     {
-        foreach ($this->centralDomains() as $domain) {
-            Route::middleware('web')
-                ->domain($domain)
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
-        }
+        // CORREGIDO: No usar foreach para evitar registrar rutas duplicadas
+        // Las rutas se registran una sola vez y funcionan en todos los dominios
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
     }
 
     protected function mapApiRoutes()
     {
-        foreach ($this->centralDomains() as $domain) {
-            Route::prefix('api')
-                ->domain($domain)
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
-        }
+        // CORREGIDO: No usar foreach para evitar registrar rutas duplicadas
+        // Las rutas API se registran una sola vez y funcionan en todos los dominios
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     protected function centralDomains(): array
