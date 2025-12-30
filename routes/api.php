@@ -18,8 +18,22 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Central API Routes
+|--------------------------------------------------------------------------
+|
+| API routes for central (non-tenant) operations.
+|
+| NOTA: La ruta /login fue movida a routes/auth.php para evitar conflictos
+| de nombres con el sistema de rutas. Si necesitas API login, úsalo desde
+| routes/auth.php o crea un controlador API separado.
+|
+*/
+
 // Public API routes (no tenancy middleware for central domain)
-Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+// Route de login comentada para evitar conflictos - usar routes/auth.php
+// Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('api.logout');
 
 // Protected API routes
@@ -40,3 +54,4 @@ Route::middleware([
         //Route::get('/product/list', [ProductController::class, 'list']);
     });
 });*/
+

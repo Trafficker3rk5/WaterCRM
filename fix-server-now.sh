@@ -40,11 +40,11 @@ echo ""
 
 cd "$APP_DIR"
 
-# 1. DESCARGAR ARCHIVO CORREGIDO
-echo "[1/5] Descargando archivo corregido..."
+# 1. DESCARGAR ARCHIVOS CORREGIDOS
+echo "[1/6] Descargando archivos corregidos..."
 echo "----------------------------------------------------------------------"
 
-echo "Descargando routes/tenant-api.php (CORREGIDO - sin conflictos de nombres)..."
+echo "Descargando routes/tenant-api.php (sin conflictos de nombres)..."
 curl -s -o routes/tenant-api.php "${GITHUB_RAW_URL}/routes/tenant-api.php"
 if [ $? -eq 0 ]; then
     show_message "routes/tenant-api.php actualizado"
@@ -52,10 +52,18 @@ else
     show_error "Error al descargar tenant-api.php"
 fi
 
+echo "Descargando routes/api.php (api.login comentado para evitar conflicto)..."
+curl -s -o routes/api.php "${GITHUB_RAW_URL}/routes/api.php"
+if [ $? -eq 0 ]; then
+    show_message "routes/api.php actualizado (ruta api.login comentada)"
+else
+    show_error "Error al descargar api.php"
+fi
+
 echo ""
 
 # 2. LIMPIAR TODOS LOS CACHÉS
-echo "[2/5] Limpiando TODOS los cachés..."
+echo "[2/6] Limpiando TODOS los cachés..."
 echo "----------------------------------------------------------------------"
 
 php artisan config:clear 2>/dev/null || show_warning "config:clear tuvo problemas"
@@ -72,7 +80,7 @@ show_message "Cachés eliminados"
 echo ""
 
 # 3. VERIFICAR RUTAS
-echo "[3/5] Verificando configuración de rutas..."
+echo "[3/6] Verificando configuración de rutas..."
 echo "----------------------------------------------------------------------"
 
 if grep -q "tenant\.api\." routes/tenant-api.php; then
@@ -81,14 +89,16 @@ else
     show_error "routes/tenant-api.php: Todavía usa 'api.' (problema)"
 fi
 
-if grep -q "api\.login" routes/api.php; then
-    show_message "routes/api.php: Usa prefijo 'api.' (correcto)"
+if grep -q "// Route::post('/login'" routes/api.php; then
+    show_message "routes/api.php: Ruta api.login comentada (conflicto resuelto)"
+else
+    show_warning "routes/api.php: Ruta api.login podría estar activa"
 fi
 
 echo ""
 
 # 4. INTENTAR CACHEAR RUTAS
-echo "[4/5] Intentando cachear rutas..."
+echo "[4/6] Intentando cachear rutas..."
 echo "----------------------------------------------------------------------"
 
 if php artisan route:cache 2>&1; then
@@ -103,7 +113,7 @@ fi
 echo ""
 
 # 5. REINICIAR APACHE
-echo "[5/5] Reiniciando Apache..."
+echo "[5/6] Reiniciando Apache..."
 echo "----------------------------------------------------------------------"
 
 if systemctl restart apache2 2>/dev/null; then
@@ -116,7 +126,7 @@ else
 fi
 
 # Esperar a que Apache inicie
-sleep 2
+sleep 3
 
 echo ""
 echo "=========================================="
@@ -124,13 +134,28 @@ echo "  Verificación Final"
 echo "=========================================="
 echo ""
 
-# Verificar que Apache está escuchando
-echo "Verificando Apache en puerto 7080..."
-if netstat -tln | grep -q ":7080"; then
-    show_message "Apache escuchando en puerto 7080"
+# 6. VERIFICAR ESTADO DEL SERVIDOR
+echo "[6/6] Verificando estado del servidor..."
+echo "----------------------------------------------------------------------"
+
+# Verificar que Apache está corriendo
+echo "Estado de Apache:"
+if systemctl is-active --quiet apache2 2>/dev/null; then
+    show_message "Apache está corriendo (systemctl)"
+elif service apache2 status 2>/dev/null | grep -q "running"; then
+    show_message "Apache está corriendo (service)"
 else
-    show_error "Apache NO está escuchando en puerto 7080"
-    echo "  Verifica logs: tail -50 /var/www/vhosts/system/crm-prueba.test/logs/error_log"
+    show_error "Apache NO está corriendo"
+    echo "  Ver logs: tail -50 /var/www/vhosts/system/crm-prueba.test/logs/error_log"
+    echo "  Intentar reiniciar: sudo systemctl restart apache2"
+fi
+
+# Verificar que Apache está escuchando en el puerto
+echo "Verificando puerto 7080..."
+if ss -tln 2>/dev/null | grep -q ":7080" || lsof -i :7080 2>/dev/null | grep -q LISTEN; then
+    show_message "Puerto 7080 está en LISTEN"
+else
+    show_warning "Puerto 7080 NO está en LISTEN (netstat/lsof no disponibles o puerto cerrado)"
 fi
 
 # Verificar que responde
