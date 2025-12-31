@@ -62,12 +62,19 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes()
     {
-        // CORREGIDO: No usar foreach para evitar registrar rutas duplicadas
-        // Las rutas API se registran una sola vez y funcionan en todos los dominios
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
+        // TEMPORALMENTE DESHABILITADO para resolver conflicto persistente de api.login
+        // El archivo routes/api.php causa conflictos de nombres de rutas que persisten
+        // incluso después de comentar la ruta problemática.
+        //
+        // SOLUCIÓN: No cargar routes/api.php hasta que se resuelva el problema de cache
+        //
+        // Si necesitas rutas API, agrégalas a routes/tenant-api.php
+        // que se carga desde routes/tenant.php
+
+        // Route::prefix('api')
+        //     ->middleware('api')
+        //     ->namespace($this->namespace)
+        //     ->group(base_path('routes/api.php'));
     }
 
     protected function centralDomains(): array

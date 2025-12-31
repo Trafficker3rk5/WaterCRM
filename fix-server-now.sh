@@ -52,12 +52,12 @@ else
     show_error "Error al descargar tenant-api.php"
 fi
 
-echo "Descargando routes/api.php (api.login comentado para evitar conflicto)..."
-curl -s -o routes/api.php "${GITHUB_RAW_URL}/routes/api.php"
+echo "Descargando app/Providers/RouteServiceProvider.php (api.php DESHABILITADO)..."
+curl -s -o app/Providers/RouteServiceProvider.php "${GITHUB_RAW_URL}/app/Providers/RouteServiceProvider.php"
 if [ $? -eq 0 ]; then
-    show_message "routes/api.php actualizado (ruta api.login comentada)"
+    show_message "RouteServiceProvider actualizado (routes/api.php DESHABILITADO)"
 else
-    show_error "Error al descargar api.php"
+    show_error "Error al descargar RouteServiceProvider.php"
 fi
 
 echo ""
@@ -89,10 +89,10 @@ else
     show_error "routes/tenant-api.php: Todavía usa 'api.' (problema)"
 fi
 
-if grep -q "// Route::post('/login'" routes/api.php; then
-    show_message "routes/api.php: Ruta api.login comentada (conflicto resuelto)"
+if grep -q "// Route::prefix('api')" app/Providers/RouteServiceProvider.php; then
+    show_message "RouteServiceProvider: routes/api.php DESHABILITADO (conflicto resuelto)"
 else
-    show_warning "routes/api.php: Ruta api.login podría estar activa"
+    show_warning "RouteServiceProvider: routes/api.php podría estar cargándose"
 fi
 
 echo ""
